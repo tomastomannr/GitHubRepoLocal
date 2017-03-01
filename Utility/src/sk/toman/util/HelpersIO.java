@@ -19,7 +19,7 @@ import jcifs.smb.SmbFile;
 public class HelpersIO {
 
 	public static void copyLocalFileOrFolder(File source, File destination) throws Exception     {
-		if(source.exists()){
+		if(source.exists()  ){
 			if(source.isDirectory()){
 				if(!destination.exists()){
 					destination.mkdirs();
