@@ -4,16 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.DatabaseMetaData;
+import java.sql.Statement;
 
+import com.mysql.jdbc.DatabaseMetaData;
 
 public class DB {
 
 	public static void main(String[] args) throws SQLException {
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			//com.microsoft.sqlserver.jdbc.SQLServerDriver   MS SQL
-			//com.mysql.jdbc.Driver  MY SQL
+			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Where is your MySQL JDBC Driver?");
 			e.printStackTrace();
@@ -24,12 +23,8 @@ public class DB {
 		Connection connection = null;
 
 		try {
-			String connectionURL = "jdbc:sqlserver://DESKTOP-59FLU6V:1433;databaseName=testDB;integratedSecurity=true"; //user=tomastomannr;password=tomastoman";    //\\MSSQLSERVER   integratedSecurity=true;
-			//"jdbc:sqlserver://<Computer Name>\\SQLFULL:1433;databaseName=BA_ELTRUN;"
-			//"jdbc:mysql://mysql50.websupport.sk:3308/asanatoman_38703","admin_38703", "95525111Abc"
-			
 			connection = DriverManager
-			.getConnection(connectionURL);
+			.getConnection("jdbc:mysql://mysql50.websupport.sk:3308/asanatoman_38703","admin_38703", "PASSWORD here");
 
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
@@ -46,13 +41,11 @@ public class DB {
 			try {
 				m = (DatabaseMetaData) connection.getMetaData();
 
-			ResultSet tables = m.getTables(connection.getCatalog(), null, "%", null);
+			ResultSet tables = m.getTables(connection.getCatalog(), null, "", null);
 			System.out.println("Column count - " + tables.getMetaData().getColumnCount());
 			while(tables.next()){
 			   System.out.println("table = " + tables.getString("TABLE_NAME"));
 			}
-			
-			
 			
 //			Statement stmt = connection.createStatement();
 //			String sql = "CREATE TABLE REGISTRATION " +

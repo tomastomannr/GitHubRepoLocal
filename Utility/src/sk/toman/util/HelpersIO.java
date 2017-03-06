@@ -1,25 +1,25 @@
 package sk.toman.util;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
 import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbFile;
+
 
 public class HelpersIO {
 
 	public static void copyLocalFileOrFolder(File source, File destination) throws Exception     {
-		if(source.exists()  ){
+		if(source.exists()){
 			if(source.isDirectory()){
 				if(!destination.exists()){
 					destination.mkdirs();
@@ -125,6 +125,42 @@ public class HelpersIO {
 			}		
 		}
 		return data;
+	}
+	
+	public static void fileToSha256(){
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+		
+        FileInputStream fis = new FileInputStream("c:\\log.txt");
+
+        byte[] dataBytes = new byte[1024];
+
+        int nread = 0;
+        while ((nread = fis.read(dataBytes)) != -1) {
+          md.update(dataBytes, 0, nread);
+        };
+        byte[] mdbytes = md.digest();
+
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < mdbytes.length; i++) {
+          sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        System.out.println("Hex format : " + sb.toString());
+
+       //convert the byte to hex format method 2
+        StringBuffer hexString = new StringBuffer();
+    	for (int i=0;i<mdbytes.length;i++) {
+    	  hexString.append(Integer.toHexString(0xFF & mdbytes[i]));
+    	}
+
+    	System.out.println("Hex format : " + hexString.toString());
+		} catch (NoSuchAlgorithmException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

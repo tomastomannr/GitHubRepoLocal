@@ -8,7 +8,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPBody;
+import javax.xml.soap.SOAPConnection;
+import javax.xml.soap.SOAPConnectionFactory;
 import javax.xml.soap.SOAPEnvelope;
+import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
@@ -18,17 +21,29 @@ import org.xml.sax.SAXException;
 
 public class SoapWS {
 	
-	
+	private static void sendRequest(String request, String credentials, String soapAction, String url){
+		SOAPConnectionFactory soapConnectionFactory;
+		try {
+			soapConnectionFactory = SOAPConnectionFactory.newInstance();
+			SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+		    
+			SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(request, credentials, soapAction), url);
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace();
+		} catch (SOAPException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static SOAPMessage createSOAPRequest(String strRequest, String credentials, String soapAction) throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
         SOAPPart soapPart = soapMessage.getSOAPPart();
         
-        // SOAP Envelope
         SOAPEnvelope envelope = soapPart.getEnvelope();
         
-        // SOAP Body
         SOAPBody soapBody = envelope.getBody();
         Document doc = stringToXmlDoc(strRequest);
         soapBody.addDocument(doc);

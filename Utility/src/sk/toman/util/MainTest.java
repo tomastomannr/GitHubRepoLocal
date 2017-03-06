@@ -11,7 +11,7 @@ public class MainTest {
 		try{
 		System.out.println("Main START");
 		
-		HelpersLog.setLogPath("C:\\\\Test\\");
+		//HelpersLog.setLogPath("C:\\\\Test\\");
 
 		/*//Copy File		
 		File fileIn = new File("C:\\\\Test\\ttto.txt");
@@ -47,8 +47,8 @@ public class MainTest {
 //		File fileOut = new File("C:\\\\Test\\2016017.txt");
 //		HelpersIO.getBase64TextFileFromFile(fileIn, fileOut);
 		
-		//Mail.sendMail("smtp.gmail.com", null, "tomastomannr@gmail.com", "tomastomannr@gmail.com", "tomastoman11111");
-		Mail.generateAndSendEmail();
+		Mail.sendMail("smtp.gmail.com", null, "tomastomannr@gmail.com", "tomastomannr@gmail.com", "pass");
+		//Mail.generateAndSendEmail();
 		System.out.println("Main END");
 		}catch(Exception e){	
 			System.out.println("Chyba Main: " + e);

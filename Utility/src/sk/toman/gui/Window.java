@@ -7,12 +7,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Combo;
 
 public class Window extends JFrame {
 
+	public static void main(String[] args) {
+		Window w = new Window();
+		w.setVisible(true);
+	}
 	private final int windowHeight = 500;
 	private final int windowWidth = 900;
 
