@@ -1,0 +1,988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:tns="http://com.ibm.sk.ubus.ws" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://com.ibm.sk.ubus.ws">
+    <xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+    <xs:element name="ContentItemNotFound" type="tns:ContentItemNotFound"/>
+    <xs:element name="NewerRecordIsStoredException" type="tns:NewerRecordIsStoredException"/>
+    <xs:element name="allocateSpaceForUpload" type="tns:allocateSpaceForUpload"/>
+    <xs:element name="allocateSpaceForUploadResponse" type="tns:allocateSpaceForUploadResponse"/>
+    <xs:element name="cancelSpaceAllocation" type="tns:cancelSpaceAllocation"/>
+    <xs:element name="cancelSpaceAllocationResponse" type="tns:cancelSpaceAllocationResponse"/>
+    <xs:element name="createPath" type="tns:createPath"/>
+    <xs:element name="createPathResponse" type="tns:createPathResponse"/>
+    <xs:element name="deleteContentItem" type="tns:deleteContentItem"/>
+    <xs:element name="deleteContentItemResponse" type="tns:deleteContentItemResponse"/>
+    <xs:element name="deleteRecord" type="tns:deleteRecord"/>
+    <xs:element name="deleteRecordResponse" type="tns:deleteRecordResponse"/>
+    <xs:element name="findGuidByExternalIdAndOwner" type="tns:findGuidByExternalIdAndOwner"/>
+    <xs:element name="findGuidByExternalIdAndOwnerResponse" type="tns:findGuidByExternalIdAndOwnerResponse"/>
+    <xs:element name="findRecords" type="tns:findRecords"/>
+    <xs:element name="findRecordsResponse" type="tns:findRecordsResponse"/>
+    <xs:element name="getContentItemByGuid" type="tns:getContentItemByGuid"/>
+    <xs:element name="getContentItemByGuidAndVersion" type="tns:getContentItemByGuidAndVersion"/>
+    <xs:element name="getContentItemByGuidAndVersionResponse" type="tns:getContentItemByGuidAndVersionResponse"/>
+    <xs:element name="getContentItemByGuidResponse" type="tns:getContentItemByGuidResponse"/>
+    <xs:element name="getContentItemSize" type="tns:getContentItemSize"/>
+    <xs:element name="getContentItemSizeResponse" type="tns:getContentItemSizeResponse"/>
+    <xs:element name="getContentItemVersions" type="tns:getContentItemVersions"/>
+    <xs:element name="getContentItemVersionsResponse" type="tns:getContentItemVersionsResponse"/>
+    <xs:element name="getRecordByGuid" type="tns:getRecordByGuid"/>
+    <xs:element name="getRecordByGuidResponse" type="tns:getRecordByGuidResponse"/>
+    <xs:element name="insertContentItem" type="tns:insertContentItem"/>
+    <xs:element name="insertContentItemResponse" type="tns:insertContentItemResponse"/>
+    <xs:element name="insertContentItemUploaded" type="tns:insertContentItemUploaded"/>
+    <xs:element name="insertContentItemUploadedResponse" type="tns:insertContentItemUploadedResponse"/>
+    <xs:element name="pathExists" type="tns:pathExists"/>
+    <xs:element name="pathExistsResponse" type="tns:pathExistsResponse"/>
+    <xs:element name="recordRetrieveResult" type="tns:recordRetrieveResult"/>
+    <xs:element name="request" type="tns:UpdateRecordRequestType"/>
+    <xs:element name="response" type="xs:anyType"/>
+    <xs:element name="retrieveACLFor" type="tns:retrieveACLFor"/>
+    <xs:element name="retrieveACLForResponse" type="tns:retrieveACLForResponse"/>
+    <xs:element name="retrievePathACL" type="tns:retrievePathACL"/>
+    <xs:element name="retrievePathACLResponse" type="tns:retrievePathACLResponse"/>
+    <xs:element name="setRetentionEvent" type="tns:setRetentionEvent"/>
+    <xs:element name="setRetentionEventResponse" type="tns:setRetentionEventResponse"/>
+    <xs:element name="store" type="tns:store"/>
+    <xs:element name="storeResponse" type="tns:storeResponse"/>
+    <xs:element name="storeResult" type="tns:StoreResponseType"/>
+    <xs:element name="storeUploaded" type="tns:storeUploaded"/>
+    <xs:element name="storeUploadedResponse" type="tns:storeUploadedResponse"/>
+    <xs:element name="testACL" type="tns:testACL"/>
+    <xs:element name="testACLResponse" type="tns:testACLResponse"/>
+    <xs:element name="testPathACL" type="tns:testPathACL"/>
+    <xs:element name="testPathACLResponse" type="tns:testPathACLResponse"/>
+    <xs:element name="updateACL" type="tns:updateACL"/>
+    <xs:element name="updateACLResponse" type="tns:updateACLResponse"/>
+    <xs:element name="updateContentItemLatest" type="tns:updateContentItemLatest"/>
+    <xs:element name="updateContentItemLatestResponse" type="tns:updateContentItemLatestResponse"/>
+    <xs:element name="updateContentItemLatestUploaded" type="tns:updateContentItemLatestUploaded"/>
+    <xs:element name="updateContentItemLatestUploadedResponse" type="tns:updateContentItemLatestUploadedResponse"/>
+    <xs:element name="updateContentItemNewVersion" type="tns:updateContentItemNewVersion"/>
+    <xs:element name="updateContentItemNewVersionResponse" type="tns:updateContentItemNewVersionResponse"/>
+    <xs:element name="updateContentItemNewVersionUploaded" type="tns:updateContentItemNewVersionUploaded"/>
+    <xs:element name="updateContentItemNewVersionUploadedResponse" type="tns:updateContentItemNewVersionUploadedResponse"/>
+    <xs:element name="updatePathACL" type="tns:updatePathACL"/>
+    <xs:element name="updatePathACLResponse" type="tns:updatePathACLResponse"/>
+    <xs:element name="updateRecord" type="tns:updateRecord"/>
+    <xs:element name="updateRecordMetadata" type="tns:updateRecordMetadata"/>
+    <xs:element name="updateRecordMetadataItemsSync" type="tns:updateRecordMetadataItemsSync"/>
+    <xs:element name="updateRecordMetadataItemsSyncResponse" type="tns:updateRecordMetadataItemsSyncResponse"/>
+    <xs:element name="updateRecordMetadataResponse" type="tns:updateRecordMetadataResponse"/>
+    <xs:element name="updateRecordResponse" type="tns:updateRecordResponse"/>
+    <xs:complexType name="allocateSpaceForUpload">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ownerSystem" type="xs:string"/>
+            <xs:element name="sizeInBytes" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="allocateSpaceForUploadResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:AllocationResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AllocationResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="result" type="tns:allocationResult"/>
+            <xs:element minOccurs="0" name="timeToLive" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentKeyType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="abandonProcess">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="processKey" type="tns:ProcessKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProcessKeyType">
+        <xs:sequence>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="abandonProcessResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:processStatusChangeResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="processStatusChangeResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ingestByGuid">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ingestByGuid" type="tns:IngestByGuidRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IngestByGuidRequestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="processingProfile" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="storageProfile" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ingestByGuidResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:IngestResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IngestResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="processKey" type="tns:ProcessKeyType"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="restartProcess">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="processKey" type="tns:ProcessKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="restartProcessResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:processStatusChangeResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ingestByPath">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ingestByPathRequest" type="tns:IngestByPathRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IngestByPathRequestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+            <xs:element minOccurs="0" name="processingProfile" type="xs:string"/>
+            <xs:element minOccurs="0" name="storageProfile" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ingestByPathResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:IngestResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ingest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ingestRequest" type="tns:IngestRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="IngestRequestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="processingProfile" type="xs:string"/>
+            <xs:element minOccurs="0" name="record" type="tns:RecordType"/>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+            <xs:element minOccurs="0" name="storageProfile" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RecordType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="guid" type="xs:string"/>
+            <xs:element name="externalId" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalRecordType" type="xs:string"/>
+            <xs:element minOccurs="0" name="title" type="xs:string"/>
+            <xs:element minOccurs="0" name="ownerSystem" type="xs:string"/>
+            <xs:element minOccurs="0" name="description" type="xs:string"/>
+            <xs:element name="retentionType" type="tns:RetentionTypeType"/>
+            <xs:element minOccurs="0" name="metadata">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="metadataItem" nillable="true" type="tns:MetadataItemType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="references">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="externalReference" nillable="true" type="tns:externalReferenceItem"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="contentItems">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="contentItem" nillable="true" type="tns:ContentItemType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="status" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalModified" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="MetadataItemType">
+        <xs:sequence>
+            <xs:element name="key" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalReferenceItem">
+        <xs:sequence>
+            <xs:element name="externalId" type="xs:string"/>
+            <xs:element name="referenceName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="guid" type="xs:string"/>
+            <xs:element name="externalId" type="xs:string"/>
+            <xs:element minOccurs="0" name="version" type="xs:int"/>
+            <xs:element minOccurs="0" name="name" type="xs:string"/>
+            <xs:element minOccurs="0" name="orgFileName" type="xs:string"/>
+            <xs:element minOccurs="0" name="length" type="xs:long"/>
+            <xs:element name="mimeType" type="xs:string"/>
+            <xs:element minOccurs="0" name="encoding" type="xs:string"/>
+            <xs:element name="digest" type="tns:DigestType"/>
+            <xs:element minOccurs="0" name="uses">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="use" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="location" type="tns:LocationType"/>
+            <xs:element name="signed" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="status" type="tns:contentItemStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DigestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="digestValue" type="xs:string"/>
+            <xs:element minOccurs="0" name="digestType" type="tns:checksumType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="LocationType">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:complexType name="LocationHrefType">
+        <xs:complexContent>
+            <xs:extension base="tns:LocationType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="href" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="LocationContentType">
+        <xs:complexContent>
+            <xs:extension base="tns:LocationType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="dataHandler" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ingestResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:IngestResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getProcessStatuses">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="processKeys" nillable="true" type="tns:ProcessKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getProcessStatusesResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:processStatusesResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="processStatusesResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="statuses" nillable="true" type="tns:processStatusResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="processStatusResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="processStatus" type="tns:processStatus"/>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getProcessStatus">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="processKey" type="tns:ProcessKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getProcessStatusResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:processStatusResponse"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="disseminate">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="disseminateRequest" type="tns:DisseminationRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DisseminationRequestType">
+        <xs:sequence>
+            <xs:element name="recordGuid" type="xs:string"/>
+            <xs:element name="path" type="xs:string"/>
+            <xs:element name="storageProfileName" type="xs:string"/>
+            <xs:element minOccurs="0" name="uses">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="use" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="disseminateResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:DisseminationResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DisseminationResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="key" type="tns:ProcessKeyType"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cancelSpaceAllocation">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cancelSpaceAllocationResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:AllocationResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="createPath">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="createPathResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:PathResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PathResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deleteContentItem">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItemGuid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deleteContentItemResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemDeleteResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemDeleteResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deleteRecord">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deleteRecordResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:DeleteRecordResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DeleteRecordResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="findGuidByExternalIdAndOwner">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="externalId" type="xs:string"/>
+            <xs:element minOccurs="0" name="owner" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalModified" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="findGuidByExternalIdAndOwnerResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="findRecords">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="queryRequest" type="tns:QueryRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="QueryRequestType">
+        <xs:sequence>
+            <xs:element name="query" type="tns:QueryType"/>
+            <xs:element name="recordScope" type="tns:recordScope"/>
+            <xs:element name="page" type="xs:int"/>
+            <xs:element name="perPage" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="QueryType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="ownerSystem" type="xs:string"/>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="externalIdIn" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="externalRecordTypeEquals" type="xs:string"/>
+            <xs:element minOccurs="0" name="titleLikeExpr" type="xs:string"/>
+            <xs:element minOccurs="0" name="descriptionLikeExpr" type="xs:string"/>
+            <xs:element minOccurs="0" name="createdDateExpr" type="tns:dateExpr"/>
+            <xs:element minOccurs="0" name="orderBy" type="tns:queryOrderBy"/>
+            <xs:element minOccurs="0" name="dir" type="tns:queryOrderDir"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="dateExpr">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="unaryDateExpr">
+        <xs:complexContent>
+            <xs:extension base="tns:dateExpr">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="value" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="dateAfter">
+        <xs:complexContent>
+            <xs:extension base="tns:unaryDateExpr">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="dateBefore">
+        <xs:complexContent>
+            <xs:extension base="tns:unaryDateExpr">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="dateEquals">
+        <xs:complexContent>
+            <xs:extension base="tns:unaryDateExpr">
+                <xs:sequence/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="dateBetween">
+        <xs:complexContent>
+            <xs:extension base="tns:dateExpr">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="after" type="tns:dateAfter"/>
+                    <xs:element minOccurs="0" name="before" type="tns:dateBefore"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="findRecordsResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:FindRecordResult"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FindRecordResult">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element name="itemsPerPage" type="xs:int"/>
+            <xs:element name="page" type="xs:int"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="records" nillable="true" type="tns:RecordType"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element name="totalSize" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemByGuid">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItemGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="contentItemScope" type="tns:contentItemScope"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemByGuidAndVersion">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItemGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="contentItemScope" type="tns:contentItemScope"/>
+            <xs:element name="version" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemByGuidAndVersionResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemRetrievalResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemRetrievalResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemByGuidResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemRetrievalResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemSize">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItemGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="version" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemSizeResponse">
+        <xs:sequence>
+            <xs:element name="return" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemVersions">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItemGuid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getContentItemVersionsResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemVersionResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemVersionResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="versions" nillable="true" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getRecordByGuid">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="recordScope" type="tns:recordScope"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="getRecordByGuidResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:recordRetrieveResult"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="recordRetrieveResult">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="record" type="tns:RecordType"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="insertContentItem">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="insertContentItemResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemInsertResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemInsertResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="guid" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element minOccurs="0" name="version" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="insertContentItemUploaded">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="insertContentItemUploadedResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemInsertResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pathExists">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pathExistsResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:PathResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UpdateRecordRequestType">
+        <xs:sequence>
+            <xs:element name="record" type="tns:RecordType"/>
+            <xs:element name="scope" type="tns:recordScope"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="retrieveACLFor">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="retrieveACLForResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ACLResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ACLResponseType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entries" nillable="true" type="tns:ACLEntryType"/>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ACLEntryType">
+        <xs:sequence>
+            <xs:element name="identity" type="xs:string"/>
+            <xs:element name="operation" type="tns:permission"/>
+            <xs:element name="allow" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="retrievePathACL">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="retrievePathACLResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ACLResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setRetentionEvent">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="setRetentionEventResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:RetentionEventResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RetentionEventResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="storeResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:StoreResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="StoreResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="storeUploaded">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="storeRequest" type="tns:StoreRequestType"/>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="StoreRequestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+            <xs:element minOccurs="0" name="record" type="tns:RecordType"/>
+            <xs:element minOccurs="0" name="storageProfileName" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="storeUploadedResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:StoreResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="testACL">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="identity" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="testACLResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:TestACLResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TestACLResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:permission"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="testPathACL">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+            <xs:element minOccurs="0" name="identity" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="testPathACLResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:TestACLResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateACL">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="request" type="tns:ACLUpdateRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ACLUpdateRequestType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="entries" nillable="true" type="tns:ACLEntryType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateACLResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ACLResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemLatest">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemLatestResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemUpdateResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemUpdateResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+            <xs:element minOccurs="0" name="version" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemLatestUploaded">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemLatestUploadedResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemUpdateResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemNewVersion">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemNewVersionResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemUpdateResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemNewVersionUploaded">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="contentItem" type="tns:ContentItemType"/>
+            <xs:element minOccurs="0" name="contentKey" type="tns:ContentKeyType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateContentItemNewVersionUploadedResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ContentItemUpdateResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updatePathACL">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="path" type="xs:string"/>
+            <xs:element minOccurs="0" name="request" type="tns:ACLUpdateRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updatePathACLResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:ACLResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateRecord">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="updateRecordRequest" type="tns:UpdateRecordRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateRecordMetadata">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="updateMetadataRecordRequest" type="tns:UpdateRecordMedataRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UpdateRecordMedataRequestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="metadata">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="metadataItem" nillable="true" type="tns:MetadataItemType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateRecordMetadataItemsSync">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="updateRecordMetadataItemsRequest" type="tns:UpdateRecordMetadataItemsRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UpdateRecordMetadataItemsRequestType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="recordGuid" type="xs:string"/>
+            <xs:element minOccurs="0" name="metadata">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="metadataItem" nillable="true" type="tns:MetadataItemType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateRecordMetadataItemsSyncResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:UpdateRecordResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="UpdateRecordResponseType">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="errorMessage" type="xs:string"/>
+            <xs:element minOccurs="0" name="responseStatus" type="tns:ResponseStatusType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateRecordMetadataResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:UpdateRecordResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="updateRecordResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="tns:UpdateRecordResponseType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContentItemNotFound">
+        <xs:sequence>
+            <xs:element name="version" nillable="true" type="xs:int"/>
+            <xs:element name="contentItemGuid" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NewerRecordIsStoredException">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="store">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="storeRequest" type="tns:StoreRequestType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="allocationResult">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Success"/>
+            <xs:enumeration value="UnknownError"/>
+            <xs:enumeration value="UnsufficientSpace"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ResponseStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESS"/>
+            <xs:enumeration value="ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RetentionTypeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOW"/>
+            <xs:enumeration value="EVENT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="checksumType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MD5"/>
+            <xs:enumeration value="SHA256"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="contentItemStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Final"/>
+            <xs:enumeration value="Deleted"/>
+            <xs:enumeration value="Virtual"/>
+            <xs:enumeration value="Processing"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="processStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="WAITING"/>
+            <xs:enumeration value="IN_PROGRESS"/>
+            <xs:enumeration value="FINISHED_WITH_SUCCESS"/>
+            <xs:enumeration value="FINISHED_WITH_SUCCESS_AND_WARNINGS"/>
+            <xs:enumeration value="TEMP_ERROR_DO_RETRY"/>
+            <xs:enumeration value="ERROR"/>
+            <xs:enumeration value="UNKNOWN"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="queryOrderBy">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DateCreated"/>
+            <xs:enumeration value="DateModified"/>
+            <xs:enumeration value="Title"/>
+            <xs:enumeration value="Description"/>
+            <xs:enumeration value="ExternalId"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="queryOrderDir">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Desc"/>
+            <xs:enumeration value="Asc"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="recordScope">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ALL"/>
+            <xs:enumeration value="RECORD"/>
+            <xs:enumeration value="CONTENT"/>
+            <xs:enumeration value="HREFS"/>
+            <xs:enumeration value="METADATA"/>
+            <xs:enumeration value="EXTERNAL_REFERENCES"/>
+            <xs:enumeration value="ALL_WITH_VALIDATION_DATA"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="contentItemScope">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CONTENT"/>
+            <xs:enumeration value="HREFS"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="permission">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="READ"/>
+            <xs:enumeration value="WRITE"/>
+            <xs:enumeration value="DELETE"/>
+            <xs:enumeration value="MODIFY_ACL"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="abandonProcess" nillable="true" type="tns:abandonProcess"/>
+    <xs:element name="abandonProcessResponse" nillable="true" type="tns:abandonProcessResponse"/>
+    <xs:element name="ingestByGuid" nillable="true" type="tns:ingestByGuid"/>
+    <xs:element name="ingestByGuidResponse" nillable="true" type="tns:ingestByGuidResponse"/>
+    <xs:element name="restartProcess" nillable="true" type="tns:restartProcess"/>
+    <xs:element name="restartProcessResponse" nillable="true" type="tns:restartProcessResponse"/>
+    <xs:element name="ingestByPath" nillable="true" type="tns:ingestByPath"/>
+    <xs:element name="ingestByPathResponse" nillable="true" type="tns:ingestByPathResponse"/>
+    <xs:element name="ingest" nillable="true" type="tns:ingest"/>
+    <xs:element name="ingestResponse" nillable="true" type="tns:ingestResponse"/>
+    <xs:element name="getProcessStatuses" nillable="true" type="tns:getProcessStatuses"/>
+    <xs:element name="getProcessStatusesResponse" nillable="true" type="tns:getProcessStatusesResponse"/>
+    <xs:element name="getProcessStatus" nillable="true" type="tns:getProcessStatus"/>
+    <xs:element name="getProcessStatusResponse" nillable="true" type="tns:getProcessStatusResponse"/>
+    <xs:element name="disseminate" nillable="true" type="tns:disseminate"/>
+    <xs:element name="disseminateResponse" nillable="true" type="tns:disseminateResponse"/>
+</xs:schema>
