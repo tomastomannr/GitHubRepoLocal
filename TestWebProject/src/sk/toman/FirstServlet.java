@@ -18,14 +18,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {// "/", 
 		"/FirstServlet", "/FirstServlet2"}, initParams = {@WebInitParam(name="name",value="menooo")} )
 public class FirstServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	private static int counter = 0;
-	private static String name = "";
+	private static String name = "";	
+	private int [] polePrvkov = {9,8,7,6,5,4,3,2,1};
+	
     /**
-     * Default constructor. 
+     * Default constructor
      */
     public FirstServlet() {
         // TODO Auto-generated constructor stub
+    	
     }
 
 	/**
