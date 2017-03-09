@@ -7,6 +7,5 @@
 	<classpathentry kind="lib" path="ojdbc6.jar"/>
 	<classpathentry kind="lib" path="simplefan.jar"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.40-bin.jar"/>
-	<classpathentry kind="lib" path="javamail-smtp-1.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
