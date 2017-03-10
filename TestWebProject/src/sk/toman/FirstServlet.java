@@ -29,7 +29,7 @@ public class FirstServlet extends HttpServlet {
      */
     public FirstServlet() {
         // TODO Auto-generated constructor stub
-    	
+    	int [] polePrv = {9,8,7,6,5,4,3,2,1};
     }
 
 	/**
@@ -39,11 +39,15 @@ public class FirstServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		counter++;
-		PrintWriter out = response.getWriter();
-		Date date = new Date();
-		out.println("<html><h2>Hi There is TOMAS!</h2><br/><h3>Date="+date +"</h3>"
-				+ "<br/><h2>counter="+counter + name + "</h2></html>");
+//		PrintWriter out = response.getWriter();
+//		Date date = new Date();
+//		out.println("<html><h2>Hi There is TOMAS!</h2><br/><h3>Date="+date +"</h3>"
+//				+ "<br/><h2>counter="+counter + name + "</h2></html>");
 		System.out.println("lineeeeeeeeeee");
+		
+		PrintWriter out = response.getWriter();
+		out.println("<html><h2>Hi "+request.getParameter("paramName")+"!</h2></html>");
+		
 	}
 
 	/**
