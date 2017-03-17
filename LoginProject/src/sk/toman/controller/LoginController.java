@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("MainPage.jsp");
 			dispatcher.forward(request, response);			
 		}else{
-			System.out.println("falsee");
+			System.out.println("false");
 			request.setAttribute("error", "Nespravne meno alebo heslo!!!!");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);	
