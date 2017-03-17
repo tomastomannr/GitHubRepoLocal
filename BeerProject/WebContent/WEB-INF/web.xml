@@ -14,8 +14,6 @@
 	<servlet-name>Ch3 Beer</servlet-name>
 	<servlet-class>sk.toman.controller.BeerSelect</servlet-class>
   </servlet>
-  
-
   <servlet-mapping>
   	<servlet-name>Ch3 Beer</servlet-name>
   	<url-pattern>/SelectBeer.do</url-pattern>
