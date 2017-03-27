@@ -2,7 +2,6 @@ package sk.toman.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -38,7 +37,7 @@ public class BeerSelect extends HttpServlet {
 		view.forward(request, response);
 		
 		
-		//michelin primacy hp225 55 r16 95w
+
 		
 		
 		
